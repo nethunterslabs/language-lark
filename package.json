@@ -1,0 +1,14 @@
+{
+  "name": "language-lark",
+  "version": "0.1.0",
+  "description": "Language support for Lark grammar files",
+  "keywords": [
+    "language",
+    "grammar"
+  ],
+  "repository": "https://github.com/nethunterslabs/language-lark",
+  "license": "Apache-2.0",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
