@@ -2,6 +2,8 @@
 
 Lark Grammar syntax highlighting and snippets for the atom editor.
 
+https://atom.io/packages/language-lark
+
 ## Description
 
 Originally forked from [Vscode-Lark](https://github.com/lark-parser/vscode-lark) to add syntax highlighting and snippets to [Lark Grammar](https://github.com/lark-parser/lark) files in Atom.
