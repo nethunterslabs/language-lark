@@ -1,0 +1,115 @@
+'.source.lark':
+  '%ignore':
+    'prefix': 'ig'
+    'body': '%ignore ${1:terminal}'
+  '%import':
+    'prefix': 'imp'
+    'body': '%import ${1:module/terminal/rule}'
+  '%import terminal from common':
+    'prefix': 'impc'
+    'body': '%import common.${1:terminal}'
+  '%declare':
+    'prefix': 'dec'
+    'body': '%declare ${1:terminal}'
+  'Terminal':
+    'prefix': 'term'
+    'body': '${1:name} : ${2:literals&/terminals}'
+  'Terminal with priority':
+    'prefix': 'termpty'
+    'body': '${1:name} ${2[. priority]} : ${3:literals&/terminals}'
+  'Literal String':
+    'prefix': 'litstr'
+    'body': '"${1:string}"'
+  'Literal Case Insensitive String':
+    'prefix': 'litstrci'
+    'body': '"${1:string}"i'
+  'Literal Regular Expression':
+    'prefix': 'litregex'
+    'body': '/${1:regex}/'
+  'Literal Range':
+    'prefix': 'litrng'
+    'body': '"$1".."$2"'
+  'Literal Range A-Z':
+    'prefix': 'litrnga2z'
+    'body': '"a".."z"'
+  'Literal Range 0-9':
+    'prefix': 'litrng029'
+    'body': '"0".."9"'
+  'Rule':
+    'prefix': 'ru'
+    'body': '${1:name} : ${2:items-to-match}'
+  'Rule with Alias':
+    'prefix': 'rual'
+    'body': '${1:name} : ${2:items-to-match} [-> ${3:alias} ]'
+  'Multiline':
+    'prefix': 'pi'
+    'body': '\n\t|'
+  'DIGIT: "0".."9"':
+    'prefix': 'dig'
+    'body': 'DIGIT'
+  'HEXDIGIT: "a".."f"|"A".."F"|DIGIT':
+    'prefix': 'hexdig'
+    'body': 'HEXDIGIT'
+  'INT: DIGIT+':
+    'prefix': 'int'
+    'body': 'INT'
+  'SIGNED_INT: ["+"|"-"] INT':
+    'prefix': 'sigint'
+    'body': 'SIGNED_INT'
+  'DECIMAL INT: "." INT? | "." INT':
+    'prefix': 'dec'
+    'body': 'DECIMAL'
+  '_EXP: ("e"|"E") SIGNED_INT':
+    'prefix': 'exp'
+    'body': '_EXP'
+  'FLOAT: INT _EXP | DECIMAL _EXP?':
+    'prefix': 'fl'
+    'body': 'FLOAT'
+  'SIGNED_FLOAT: ["+"|"-"] FLOAT':
+    'prefix': 'sigfl'
+    'body': 'SIGNED_FLOAT'
+  'NUMBER: FLOAT | INT':
+    'prefix': 'num'
+    'body': 'NUMBER'
+  'SIGNED_NUMBER: ["+"|"-"] NUMBER':
+    'prefix': 'signum'
+    'body': 'SIGNED_NUMBER'
+  '_STRING_INNER: /.*?/':
+    'prefix': 'strinner'
+    'body': '_STRING_INNER'
+  '_STRING_ESC_INNER: _STRING_INNER /(?<!\\)(\\\\)*?/ ':
+    'prefix': 'strescin'
+    'body': '_STRING_ESC_INNER'
+  'ESCAPED_STRING: "\"" _STRING_ESC_INNER "\""':
+    'prefix': 'stresc'
+    'body': 'ESCAPED_STRING'
+  'LCASE_LETTER: "a".."z"':
+    'prefix': 'letlc'
+    'body': 'LCASE_LETTER'
+  'UCASE_LETTER: "A".."Z"':
+    'prefix': 'letuc'
+    'body': 'UCASE_LETTER'
+  'LETTER: UCASE_LETTER | LCASE_LETTER':
+    'prefix': 'let'
+    'body': 'LETTER'
+  'WORD: LETTER+':
+    'prefix': 'wo'
+    'body': 'WORD'
+  'CNAME: ("_"|LETTER) ("_"|LETTER|DIGIT)*':
+    'prefix': 'cname'
+    'body': 'CNAME'
+  'WS_INLINE: (" "|/\t/)+':
+    'prefix': 'wsinline'
+    'body': 'WS_INLINE'
+  'WS: /[ \t\f\r\n]/+':
+    'prefix': 'ws'
+    'body': 'WS'
+  'CR: /\r/':
+    'prefix': 'cr'
+    'body': 'CR'
+  'LF: /\n/':
+    'prefix': 'lf'
+    'body': 'LF'
+  'NEWLINE: (CR? LF)+':
+    'prefix': 'nl'
+    'body': 'NEWLINE'
